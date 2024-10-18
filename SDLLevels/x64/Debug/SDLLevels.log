@@ -11,9 +11,10 @@ C:\Sheridan\ThirdYear\Semester6\GameEngineering\Midterm\GameEngMidtermSDLLevels\
 C:\Sheridan\ThirdYear\Semester6\GameEngineering\Midterm\GameEngMidtermSDLLevels\Warrior.h(19,26): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
   (compiling source file 'Level1.cpp')
   
-C:\Sheridan\ThirdYear\Semester6\GameEngineering\Midterm\GameEngMidtermSDLLevels\Level1.cpp(32,48): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Sheridan\ThirdYear\Semester6\GameEngineering\Midterm\GameEngMidtermSDLLevels\Level1.cpp(53,20): warning C4244: 'initializing': conversion from 'float' to 'unsigned int', possible loss of data
-C:\Sheridan\ThirdYear\Semester6\GameEngineering\Midterm\GameEngMidtermSDLLevels\Level1.cpp(58,42): warning C4244: 'argument': conversion from 'double' to 'unsigned int', possible loss of data
-C:\Sheridan\ThirdYear\Semester6\GameEngineering\Midterm\GameEngMidtermSDLLevels\Level1.cpp(58,27): warning C4244: 'argument': conversion from 'double' to 'unsigned int', possible loss of data
+C:\Sheridan\ThirdYear\Semester6\GameEngineering\Midterm\GameEngMidtermSDLLevels\Level1.cpp(28,20): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Sheridan\ThirdYear\Semester6\GameEngineering\Midterm\GameEngMidtermSDLLevels\Level1.cpp(65,71): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Sheridan\ThirdYear\Semester6\GameEngineering\Midterm\GameEngMidtermSDLLevels\Level1.cpp(102,53): warning C4244: 'argument': conversion from 'double' to 'unsigned int', possible loss of data
+C:\Sheridan\ThirdYear\Semester6\GameEngineering\Midterm\GameEngMidtermSDLLevels\Level1.cpp(102,38): warning C4244: 'argument': conversion from 'double' to 'unsigned int', possible loss of data
+C:\Sheridan\ThirdYear\Semester6\GameEngineering\Midterm\GameEngMidtermSDLLevels\Level1.cpp(106,30): warning C4018: '>=': signed/unsigned mismatch
   Generating Code...
   SDLLevels.vcxproj -> C:\Sheridan\ThirdYear\Semester6\GameEngineering\Midterm\GameEngMidtermSDLLevels\x64\Debug\SDLLevels.exe

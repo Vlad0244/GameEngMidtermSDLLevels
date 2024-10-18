@@ -136,7 +136,7 @@ void Renderer::RenderTexture(Texture* _texture, Rect _srcRect, Rect _destRect)
 	m_destRect.y = _destRect.Y1;
 	m_destRect.w = _destRect.X2 - _destRect.X1;
 	m_destRect.h = _destRect.Y2 - _destRect.Y1;
-
+	
 	m_srcRect.x = _srcRect.X1;
 	m_srcRect.y = _texture->GetImageInfo()->Height - _srcRect.Y2;
 	m_srcRect.w = _srcRect.X2 - _srcRect.X1;

@@ -13,7 +13,7 @@ public:
 	// Accessors
 	unsigned int GetFPS() { return m_fpsLast; }
 	float GetDeltaTime() { return m_deltaTime; }
-	int GetCurrentTime() { return int(m_currentTime / 1000); }
+	int GetCurrentTimeT() { return int(m_currentTime / 1000); }
 
 	// Methods
 	void Tick();

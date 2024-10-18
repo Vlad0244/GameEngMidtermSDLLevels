@@ -10,6 +10,7 @@ Level::Level()
 {
 	Unit::Pool = new ObjectPool<Unit>();
 	Warrior::Pool = new ObjectPool<Warrior>();
+	AssetController::Instance().Initialize(10000000); // Allocate 10MB
 	m_mapSizeX = 0;
 	m_mapSizeY = 0;
 	m_units.clear();
@@ -19,6 +20,7 @@ Level::~Level()
 {
 	m_units.clear();
 	delete Unit::Pool;
+	delete Warrior::Pool;
 	AssetController::Instance().Clear(); // Free 10MB
 }
 

@@ -16,7 +16,7 @@ GameController::~GameController()
 
 void GameController::RunGame()
 {
-	AssetController::Instance().Initialize(10000000); // Allocate 10MB
+	Level1* level1 = new Level1();
 	Renderer* r = &Renderer::Instance();
 	Timing* t = &Timing::Instance();
 	
@@ -38,20 +38,25 @@ void GameController::RunGame()
 	sheetRock->SetSize(1, 4, 20, 20);
 	sheetRock->AddAnimation(EN_AN_IDLE, 0, 1, 6.0f);
 
-	Level1* level1 = new Level1();
+	
 	level1->AssignNonDefaultValues();
 	level1->startLevel(sheetWarrior);
 
-	while (m_sdlEvent.type != SDL_QUIT)
+	while (!level1->isFinished())
 	{
 		t->Tick();
 		SDL_PollEvent(&m_sdlEvent);
+		if (m_sdlEvent.type == SDL_QUIT)
+			break;
+
 		level1->Update(font);
+		
 		SDL_RenderPresent(r->GetRenderer());
 	}
 
 	delete SpriteAnim::Pool;
 	delete SpriteSheet::Pool;
+	delete level1;
 
 	font->Shutdown();
 	r->Shutdown();
