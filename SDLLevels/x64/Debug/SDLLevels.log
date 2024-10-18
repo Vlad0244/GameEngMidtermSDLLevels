@@ -1,0 +1,78 @@
+﻿          1 file(s) copied.
+          1 file(s) copied.
+  Asset.cpp
+  AssetController.cpp
+C:\Users\Vlad\Desktop\SHERIDAN\yr3SEM2\GameEng\Midterm\SDLLevels\SDLLevels\StackAllocator.h(13,46): warning C4244: 'return': conversion from '__int64' to 'int', possible loss of data
+  (compiling source file 'AssetController.cpp')
+  
+  FileController.cpp
+  GameController.cpp
+C:\Users\Vlad\Desktop\SHERIDAN\yr3SEM2\GameEng\Midterm\SDLLevels\SDLLevels\StackAllocator.h(13,46): warning C4244: 'return': conversion from '__int64' to 'int', possible loss of data
+  (compiling source file 'GameController.cpp')
+  
+  Level.cpp
+C:\Users\Vlad\Desktop\SHERIDAN\yr3SEM2\GameEng\Midterm\SDLLevels\SDLLevels\StackAllocator.h(13,46): warning C4244: 'return': conversion from '__int64' to 'int', possible loss of data
+  (compiling source file 'Level.cpp')
+  
+C:\Users\Vlad\Desktop\SHERIDAN\yr3SEM2\GameEng\Midterm\SDLLevels\SDLLevels\Level.cpp(61,20): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  Level1.cpp
+C:\Users\Vlad\Desktop\SHERIDAN\yr3SEM2\GameEng\Midterm\SDLLevels\SDLLevels\StackAllocator.h(13,46): warning C4244: 'return': conversion from '__int64' to 'int', possible loss of data
+  (compiling source file 'Level1.cpp')
+  
+C:\Users\Vlad\Desktop\SHERIDAN\yr3SEM2\GameEng\Midterm\SDLLevels\SDLLevels\Level1.cpp(51,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Vlad\Desktop\SHERIDAN\yr3SEM2\GameEng\Midterm\SDLLevels\SDLLevels\Level1.cpp(55,41): warning C4244: 'argument': conversion from 'double' to 'unsigned int', possible loss of data
+C:\Users\Vlad\Desktop\SHERIDAN\yr3SEM2\GameEng\Midterm\SDLLevels\SDLLevels\Level1.cpp(55,26): warning C4244: 'argument': conversion from 'double' to 'unsigned int', possible loss of data
+  Level2.cpp
+  Renderer.cpp
+C:\Users\Vlad\Desktop\SHERIDAN\yr3SEM2\GameEng\Midterm\SDLLevels\SDLLevels\StackAllocator.h(13,46): warning C4244: 'return': conversion from '__int64' to 'int', possible loss of data
+  (compiling source file 'Renderer.cpp')
+  
+  Resource.cpp
+C:\Users\Vlad\Desktop\SHERIDAN\yr3SEM2\GameEng\Midterm\SDLLevels\SDLLevels\StackAllocator.h(13,46): warning C4244: 'return': conversion from '__int64' to 'int', possible loss of data
+  (compiling source file 'Resource.cpp')
+  
+C:\Users\Vlad\Desktop\SHERIDAN\yr3SEM2\GameEng\Midterm\SDLLevels\SDLLevels\Resource.cpp(28,40): warning C4267: '=': conversion from 'size_t' to 'byte', possible loss of data
+  SDLLevels.cpp
+C:\Users\Vlad\Desktop\SHERIDAN\yr3SEM2\GameEng\Midterm\SDLLevels\SDLLevels\StackAllocator.h(13,46): warning C4244: 'return': conversion from '__int64' to 'int', possible loss of data
+  (compiling source file 'SDLLevels.cpp')
+  
+  SoundEffect.cpp
+C:\Users\Vlad\Desktop\SHERIDAN\yr3SEM2\GameEng\Midterm\SDLLevels\SDLLevels\StackAllocator.h(13,46): warning C4244: 'return': conversion from '__int64' to 'int', possible loss of data
+  (compiling source file 'SoundEffect.cpp')
+  
+  SpriteAnim.cpp
+C:\Users\Vlad\Desktop\SHERIDAN\yr3SEM2\GameEng\Midterm\SDLLevels\SDLLevels\StackAllocator.h(13,46): warning C4244: 'return': conversion from '__int64' to 'int', possible loss of data
+  (compiling source file 'SpriteAnim.cpp')
+  
+  SpriteSheet.cpp
+C:\Users\Vlad\Desktop\SHERIDAN\yr3SEM2\GameEng\Midterm\SDLLevels\SDLLevels\StackAllocator.h(13,46): warning C4244: 'return': conversion from '__int64' to 'int', possible loss of data
+  (compiling source file 'SpriteSheet.cpp')
+  
+C:\Users\Vlad\Desktop\SHERIDAN\yr3SEM2\GameEng\Midterm\SDLLevels\SDLLevels\SpriteSheet.cpp(51,12): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  StackAllocator.cpp
+C:\Users\Vlad\Desktop\SHERIDAN\yr3SEM2\GameEng\Midterm\SDLLevels\SDLLevels\StackAllocator.h(13,46): warning C4244: 'return': conversion from '__int64' to 'int', possible loss of data
+  (compiling source file 'StackAllocator.cpp')
+  
+  Texture.cpp
+C:\Users\Vlad\Desktop\SHERIDAN\yr3SEM2\GameEng\Midterm\SDLLevels\SDLLevels\StackAllocator.h(13,46): warning C4244: 'return': conversion from '__int64' to 'int', possible loss of data
+  (compiling source file 'Texture.cpp')
+  
+  TGAReader.cpp
+C:\Users\Vlad\Desktop\SHERIDAN\yr3SEM2\GameEng\Midterm\SDLLevels\SDLLevels\StackAllocator.h(13,46): warning C4244: 'return': conversion from '__int64' to 'int', possible loss of data
+  (compiling source file 'TGAReader.cpp')
+  
+  Timing.cpp
+  TTFont.cpp
+C:\Users\Vlad\Desktop\SHERIDAN\yr3SEM2\GameEng\Midterm\SDLLevels\SDLLevels\StackAllocator.h(13,46): warning C4244: 'return': conversion from '__int64' to 'int', possible loss of data
+  (compiling source file 'TTFont.cpp')
+  
+  Unit.cpp
+C:\Users\Vlad\Desktop\SHERIDAN\yr3SEM2\GameEng\Midterm\SDLLevels\SDLLevels\StackAllocator.h(13,46): warning C4244: 'return': conversion from '__int64' to 'int', possible loss of data
+  (compiling source file 'Unit.cpp')
+  
+  Warrior.cpp
+C:\Users\Vlad\Desktop\SHERIDAN\yr3SEM2\GameEng\Midterm\SDLLevels\SDLLevels\StackAllocator.h(13,46): warning C4244: 'return': conversion from '__int64' to 'int', possible loss of data
+  (compiling source file 'Warrior.cpp')
+  
+  Generating Code...
+  SDLLevels.vcxproj -> C:\Users\Vlad\Desktop\SHERIDAN\yr3SEM2\GameEng\Midterm\SDLLevels\SDLLevels\x64\Debug\SDLLevels.exe
