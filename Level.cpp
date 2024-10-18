@@ -4,12 +4,12 @@
 #include "SpriteSheet.h"
 #include "TTFont.h"
 #include "Timing.h"
+#include "Warrior.h"
 
 Level::Level()
 {
-	AssetController::Instance().Initialize(10000000); // Allocate 10MB
 	Unit::Pool = new ObjectPool<Unit>();
-
+	Warrior::Pool = new ObjectPool<Warrior>();
 	m_mapSizeX = 0;
 	m_mapSizeY = 0;
 	m_units.clear();
@@ -36,7 +36,7 @@ void Level::AssignNonDefaultValues()
 	Resource::AssignNonDefaultValues();
 }
 
-void Level::Update(float deltaTime, TTFont* ttfont)
+void Level::Update(TTFont* ttfont)
 {
 }
 

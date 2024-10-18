@@ -19,7 +19,7 @@ public:
 	void Deserialize(std::istream& _stream) override;
 	void ToString() override;
 	virtual void AssignNonDefaultValues() override;
-	virtual void Update(float deltaTime, TTFont* ttfont);
+	virtual void Update(TTFont* ttfont);
 	virtual boolean isFinished();
 	virtual void loadLevel();
 	virtual void startLevel(SpriteSheet* sheet);

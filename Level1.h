@@ -13,7 +13,7 @@ public:
 
 	// Methods
 	void AssignNonDefaultValues() override;
-	void Update(float deltaTime, TTFont* ttfont) override;
+	void Update(TTFont* ttfont) override;
 	boolean isFinished() override;
 	void loadLevel() override;
 	void startLevel(SpriteSheet* sheetWarrior) override;
