@@ -8,74 +8,145 @@
 
 Level1::Level1()
 {
-	AssetController::Instance().Initialize(10000000); // Allocate 10MB
-	Unit::Pool = new ObjectPool<Unit>();
-
 	m_mapSizeX = 0;
 	m_mapSizeY = 0;
 	m_units.clear();
+	finished = false;
+	warriorSheet = nullptr;
+	loadStatus = "No";
 }
 
 Level1::~Level1()
 {
 	m_units.clear();
-	delete Unit::Pool;
-	AssetController::Instance().Clear(); // Free 10MB
+}
+
+void Level1::Serialize(std::ostream& _stream)
+{
+	_stream.write(reinterpret_cast<char*>(&m_mapSizeX), sizeof(m_mapSizeX));
+	_stream.write(reinterpret_cast<char*>(&m_mapSizeY), sizeof(m_mapSizeY));
+
+	int numberOfUnits = m_units.size();
+	_stream.write(reinterpret_cast<char*>(&numberOfUnits), sizeof(numberOfUnits));
+	for (int count = 0; count < numberOfUnits; count++)
+	{
+		SerializePointer(_stream, m_units[count]);
+	}
+	warriorSheet->Serialize(_stream);
+	Resource::Serialize(_stream);
+}
+
+void Level1::Deserialize(std::istream& _stream)
+{
+	_stream.read(reinterpret_cast<char*>(&m_mapSizeX), sizeof(m_mapSizeX));
+	_stream.read(reinterpret_cast<char*>(&m_mapSizeY), sizeof(m_mapSizeY));
+
+	int numberOfUnits;
+	_stream.read(reinterpret_cast<char*>(&numberOfUnits), sizeof(numberOfUnits));
+	for (int count = 0; count < numberOfUnits; count++)
+	{
+		Unit* unit;
+		DeserializePointer(_stream, unit);
+		m_units.push_back(unit);
+	}
+	warriorSheet->Deserialize(_stream);
+	Resource::Deserialize(_stream);
 }
 
 void Level1::AssignNonDefaultValues()
 {
-	m_mapSizeX = 1920;
-	m_mapSizeY = 1080;
+	m_mapSizeX = 1280;
+	m_mapSizeY = 720;
+	finished = false;
 	for (int count = 0; count < 10; count++)
 	{
 		Warrior* warrior = Warrior::Pool->GetResource();
 		warrior->AssignNonDefaultValues();
 		Point posPoint = Point(0, 10 + 100 * count);
-		warrior->AssignValues(posPoint, rand() % 21 + 80, 1);
+		warrior->AssignValues(posPoint, (rand() % (MAXSPEED - MINSPEED + 1) + MINSPEED), 1);
 		m_units.push_back(warrior);
 	}
 
 	Resource::AssignNonDefaultValues();
 }
 
-void Level1::Update(float deltaTime, TTFont* ttfont)
+void Level1::Update(TTFont* ttfont)
 {
 	Renderer* r = &Renderer::Instance();
 	Timing* t = &Timing::Instance();
+
 	r->SetDrawColor(Color(128, 128, 128, 255));
 	r->ClearScreen();
 
-	for (Unit* unit : m_units)
-	{
-		int X1 = dynamic_cast<Warrior*>(unit)->GetPoint().X + (t->GetDeltaTime() * dynamic_cast<Warrior*>(unit)->GetSpeed());
-		int Y1 = dynamic_cast<Warrior*>(unit)->GetPoint().Y;
 
-		r->RenderTexture(warriorSheet, warriorSheet->Update(EN_AN_IDLE, t->GetDeltaTime()), 
-			Rect(X1, Y1, 69 * 1.8 + X1, 44 * 1.8 + Y1));
+	float minDeltaTime = 1.0f / MINSPEED;
+	if (t->GetDeltaTime() < minDeltaTime * 1000) // Convert to milliseconds
+	{
+		SDL_Delay((Uint32)((minDeltaTime * 1000) - t->GetDeltaTime())); // Delay to maintain minimum frame time
 	}
 
+	float deltaTime = t->GetDeltaTime();
 
-	std::string s = "Frame number: " + std::to_string(warriorSheet->GetCurrentClip(EN_AN_IDLE)) + ", Time: " + to_string(t->GetCurrentTime());
-	ttfont->Write(r->GetRenderer(), s.c_str(), SDL_Color{ 0, 255, 0 }, SDL_Point{ 100, 0 });
+	for (Unit* unit : m_units)
+	{
+		Warrior* warrior = dynamic_cast<Warrior*>(unit);
+
+		if (warrior)
+		{
+			unsigned int X1 = static_cast<unsigned int>(warrior->GetPoint().X + (deltaTime * warrior->GetSpeed()));
+			unsigned int Y1 = warrior->GetPoint().Y;
+
+			cout << "Distance: " << X1 - warrior->GetPoint().X << " Speed: " << warrior->GetSpeed() << endl;
+			warrior->SetPoint(Point{ X1, Y1 });
+
+			Rect src = warriorSheet->Update(EN_AN_RUN, deltaTime);
+			Rect dist = Rect(X1, Y1, 69 * 1.8 + X1, 44 * 1.8 + Y1);
+
+			r->RenderTexture(warriorSheet, src, dist);
+
+			if (warrior->GetPoint().X >= m_mapSizeX)
+			{
+				finished = true;
+			}
+		}
+	}
+
+	std::string s = "Time: " + to_string(t->GetCurrentTimeT());
+	ttfont->Write(r->GetRenderer(), s.c_str(), SDL_Color{ 0, 0, 255 }, SDL_Point{ 300, 0 });
 
 	std::string fps = "Frames Per Second: " + std::to_string(t->GetFPS());
 	ttfont->Write(r->GetRenderer(), fps.c_str(), SDL_Color{ 0, 0, 255 }, SDL_Point{ 0, 0 });
 
-	SDL_RenderPresent(r->GetRenderer());
+	std::string loaded = "Auto Saved: " + loadStatus;
+	ttfont->Write(r->GetRenderer(), loaded.c_str(), SDL_Color{ 0, 0, 255 }, SDL_Point{ 500, 0 });
+
+	int time = t->GetCurrentTimeT();
+	if (time == 5)
+	{
+		loadLevel();
+		loadStatus = "Yes";
+	}
 }
 
 boolean Level1::isFinished()
 {
-	return boolean();
+	return finished;
 }
 
 void Level1::loadLevel()
 {
+	ofstream writeStream(LEVELFILE, ios::out | ios::binary);
+	ifstream readStream(LEVELFILE, ios::in | ios::binary);
+
+	Serialize(writeStream);
+	Deserialize(readStream);
 }
 
-void Level1::startLevel(SpriteSheet* _sheetWarrior)
+void Level1::startLevel(SpriteSheet* _sheetWarrior, SpriteSheet* emptySheet)
 {
+	Renderer* r = &Renderer::Instance();
+
+	r->Initialize(m_mapSizeX, m_mapSizeY);
 	warriorSheet = _sheetWarrior;
 }
 

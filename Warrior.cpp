@@ -14,11 +14,11 @@ void Warrior::AssignNonDefaultValues()
 	Resource::AssignNonDefaultValues();
 }
 
-void Warrior::AssignValues(Point posPoint, int speed, int direction)
+void Warrior::AssignValues(Point _posPoint, float _speed, int _direction)
 {
-	posPoint = posPoint;
-	speed = speed;
-	direction = direction;
+	posPoint = _posPoint;
+	speed = _speed;
+	direction = _direction;
 }
 
 void Warrior::Serialize(std::ostream& _stream)

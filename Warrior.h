@@ -14,7 +14,8 @@ public:
 	void Deserialize(std::istream& _stream) override;
 	void ToString() override;
 	void AssignNonDefaultValues() override;
-	void AssignValues(Point posPoint, int speed, int direction);
+	void AssignValues(Point posPoint, float speed, int direction);
+	void SetPoint(Point _posPoint) { posPoint = _posPoint; }
 	int GetSpeed() { return speed; }
 	Point GetPoint() { return posPoint; }
 
@@ -24,8 +25,7 @@ public:
 private:
 	// Members
 	boolean direction;
-	int speed;
+	float speed;
 	Point posPoint;
-
 };
 
