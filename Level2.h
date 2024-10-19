@@ -3,6 +3,8 @@
 #include "SpriteAnim.h"
 #include "SpriteSheet.h"
 #include "ObjectPool.h"
+#include "Rock.h"
+#include "Warrior.h"
 
 const int MINSPEED2 = 80;
 const int MAXSPEED2 = 100;
@@ -22,6 +24,8 @@ public:
 	boolean isFinished() override;
 	void loadLevel() override;
 	void startLevel(SpriteSheet* sheetWarrior, SpriteSheet* rockSheet) override;
+	boolean checkCollision(Warrior* warr, Rock* rock);
+	void finishLevel();
 
 private:
 	// Members

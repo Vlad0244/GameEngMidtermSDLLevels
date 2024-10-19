@@ -18,7 +18,8 @@ public:
 	void SetPoint(Point _posPoint) { posPoint = _posPoint; }
 	int GetSpeed() { return speed; }
 	Point GetPoint() { return posPoint; }
-
+	boolean GetIsHit() { return isHit; }
+	void SetIsHit(boolean _hit) { isHit = _hit; }
 	// Members 
 	static ObjectPool<Warrior>* Pool;
 
@@ -27,6 +28,6 @@ private:
 	boolean direction;
 	float speed;
 	Point posPoint;
-
+	boolean isHit;
 };
 

@@ -95,11 +95,13 @@ void Level1::Update(TTFont* ttfont)
 		{
 			unsigned int X1 = static_cast<unsigned int>(warrior->GetPoint().X + (deltaTime * warrior->GetSpeed() * 3));
 			unsigned int Y1 = warrior->GetPoint().Y;
+			cout << "Speed: " << warrior->GetSpeed() << " Max Speed: " << MAXSPEED << " " << (warrior->GetSpeed() / MAXSPEED) * 6.0f;
+			float kof = ((float)warrior->GetSpeed() / (float)MAXSPEED) * 6.0f;
 
 			cout << "Distance: " << X1 - warrior->GetPoint().X << " Speed: " << warrior->GetSpeed() << endl;
 			warrior->SetPoint(Point{ X1, Y1 });
 
-			Rect src = warriorSheet->Update(EN_AN_RUN, deltaTime);
+			Rect src = warriorSheet->Update(EN_AN_RUN, deltaTime, kof);
 			Rect dist = Rect(X1, Y1, 69 * 1.8 + X1, 44 * 1.8 + Y1);
 
 			r->RenderTexture(warriorSheet, src, dist);

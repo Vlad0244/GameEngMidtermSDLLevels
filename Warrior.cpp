@@ -16,9 +16,11 @@ void Warrior::AssignNonDefaultValues()
 
 void Warrior::AssignValues(Point _posPoint, float _speed, int _direction)
 {
+	cout << "Warrior with Pos: X: " << posPoint.X << " Y: " << posPoint.Y << " is being created " << endl;
 	posPoint = _posPoint;
 	speed = _speed;
 	direction = _direction;
+	SetIsHit(false);
 }
 
 void Warrior::Serialize(std::ostream& _stream)
