@@ -17,6 +17,7 @@ public:
 
 	// Methods
 	void Tick();
+	void Reset();
 
 private:
 	// Members

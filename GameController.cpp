@@ -142,21 +142,30 @@ void GameController::RunGame()
 	level1->startLevel(sheetWarrior, nullptr);
 	level2->startLevel(sheetWarrior, sheetRock);
 
+	bool level1Finished = false;
+
 	while (true)
 	{
 		t->Tick();
-
+		printf("After tick: current time: %u, delta time: %f\n", t->GetCurrentTimeT(), t->GetDeltaTime());
 		SDL_PollEvent(&m_sdlEvent);
 		if (m_sdlEvent.type == SDL_QUIT)
 			break;
 
-		if (!level1->isFinished())
+		if (!level1Finished)
 		{
 			level1->Update(font);
+			if (level1->isFinished())
+			{
+				level1Finished = true;
+				t->Reset();
+			}
 		}
-		else if (level1->isFinished() && !level2->isFinished())
+		else
 		{
 			level2->Update(font);
+			if (level2->isFinished())
+				break;
 		}
 
 		SDL_RenderPresent(r->GetRenderer());
@@ -165,6 +174,7 @@ void GameController::RunGame()
 	delete SpriteAnim::Pool;
 	delete SpriteSheet::Pool;
 	delete level1;
+	delete level2;
 
 	font->Shutdown();
 	r->Shutdown();

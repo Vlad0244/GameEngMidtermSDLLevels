@@ -26,3 +26,13 @@ void Timing::Tick()
 	}
 	m_lastTime = m_currentTime;
 }
+
+void Timing::Reset()
+{
+	m_fpsCount = 0;  // Reset the FPS count as well
+	m_fpsLast = 0;   // Optionally reset last FPS as well
+	m_deltaTime = 0; // Reset delta time
+	m_currentTime = 0; // Explicitly reset current time to 0
+	m_lastTime = SDL_GetTicks(); // Reset last time to the current tick
+	m_fpsStart = SDL_GetTicks(); // Reset FPS start time
+}
