@@ -62,7 +62,7 @@ void Level1::AssignNonDefaultValues()
 		Warrior* warrior = Warrior::Pool->GetResource();
 		warrior->AssignNonDefaultValues();
 		Point posPoint = Point(0, 10 + 100 * count);
-		warrior->AssignValues(posPoint, (rand() % (MAXSPEED - MINSPEED + 1) + MINSPEED), 1);
+		warrior->AssignValues(posPoint, (rand() % (MAXSPEED1 - MINSPEED1 + 1) + MINSPEED1), 1);
 		m_units.push_back(warrior);
 	}
 
@@ -78,7 +78,7 @@ void Level1::Update(TTFont* ttfont)
 	r->ClearScreen();
 
 
-	float minDeltaTime = 1.0f / MINSPEED;
+	float minDeltaTime = 1.0f / MINSPEED1;
 	if (t->GetDeltaTime() < minDeltaTime * 1000) // Convert to milliseconds
 	{
 		SDL_Delay((Uint32)((minDeltaTime * 1000) - t->GetDeltaTime())); // Delay to maintain minimum frame time
@@ -116,11 +116,10 @@ void Level1::Update(TTFont* ttfont)
 	std::string fps = "Frames Per Second: " + std::to_string(t->GetFPS());
 	ttfont->Write(r->GetRenderer(), fps.c_str(), SDL_Color{ 0, 0, 255 }, SDL_Point{ 0, 0 });
 
-	int time = t->GetCurrentTimeT();
-	if (time % 5 == 0)
-	{
-		loadLevel();
-	}
+
+	int currentTime = t->GetCurrentTimeT();
+	loadLevel(currentTime);
+	
 }
 
 boolean Level1::isFinished()
@@ -128,20 +127,21 @@ boolean Level1::isFinished()
 	return finished;
 }
 
-void Level1::loadLevel()
+void Level1::loadLevel(int currentTime)
 {
-	ofstream writeStream(LEVELFILE, ios::out | ios::binary);
-	ifstream readStream(LEVELFILE, ios::in | ios::binary);
+	if (currentTime % 5 == 0)
+	{
+		ofstream writeStream(LEVELFILE1, ios::out | ios::binary);
+		ifstream readStream(LEVELFILE1, ios::in | ios::binary);
 
-	Serialize(writeStream);
-	Deserialize(readStream);
+		Serialize(writeStream);
+		Deserialize(readStream);
+	}
+	
 }
 
 void Level1::startLevel(SpriteSheet* _sheetWarrior)
 {
-	Renderer* r = &Renderer::Instance();
-
-	r->Initialize(m_mapSizeX, m_mapSizeY);
 	warriorSheet = _sheetWarrior;
 }
 

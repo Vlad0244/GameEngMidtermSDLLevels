@@ -47,9 +47,6 @@ boolean Level::isFinished()
 	return boolean();
 }
 
-void Level::loadLevel()
-{
-}
 
 void Level::startLevel(SpriteSheet* sheet)
 {

@@ -4,6 +4,7 @@
 #include "TTFont.h"
 #include "Timing.h"
 #include "Level1.h"
+#include "Level2.h"
 
 GameController::GameController()
 {
@@ -17,6 +18,10 @@ GameController::~GameController()
 void GameController::RunGame()
 {
 	Level1* level1 = new Level1();
+	Level2* level2 = new Level2();
+	level1->AssignNonDefaultValues();
+	level2->AssignNonDefaultValues();
+
 	Renderer* r = &Renderer::Instance();
 	Timing* t = &Timing::Instance();
 	
@@ -38,18 +43,27 @@ void GameController::RunGame()
 	sheetRock->SetSize(1, 4, 20, 20);
 	sheetRock->AddAnimation(EN_AN_IDLE, 0, 1, 6.0f);
 
+	r->Initialize(1920, 1080);
 	
-	level1->AssignNonDefaultValues();
 	level1->startLevel(sheetWarrior);
+	level2->startLevel(sheetWarrior);
 
-	while (!level1->isFinished())
+	while (true)
 	{
 		t->Tick();
+
 		SDL_PollEvent(&m_sdlEvent);
 		if (m_sdlEvent.type == SDL_QUIT)
 			break;
 
-		level1->Update(font);
+		if (!level1->isFinished())
+		{
+			level1->Update(font);
+		}
+		else
+		{
+			level2->Update(font);
+		}
 		
 		SDL_RenderPresent(r->GetRenderer());
 	}

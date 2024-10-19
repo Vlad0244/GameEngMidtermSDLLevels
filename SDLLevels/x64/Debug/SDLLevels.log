@@ -12,7 +12,7 @@ C:\Sheridan\ThirdYear\Semester6\GameEngineering\Midterm\GameEngMidtermSDLLevels\
   (compiling source file 'Level1.cpp')
   
 C:\Sheridan\ThirdYear\Semester6\GameEngineering\Midterm\GameEngMidtermSDLLevels\Level1.cpp(28,20): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Sheridan\ThirdYear\Semester6\GameEngineering\Midterm\GameEngMidtermSDLLevels\Level1.cpp(65,71): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Sheridan\ThirdYear\Semester6\GameEngineering\Midterm\GameEngMidtermSDLLevels\Level1.cpp(65,73): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 C:\Sheridan\ThirdYear\Semester6\GameEngineering\Midterm\GameEngMidtermSDLLevels\Level1.cpp(102,53): warning C4244: 'argument': conversion from 'double' to 'unsigned int', possible loss of data
 C:\Sheridan\ThirdYear\Semester6\GameEngineering\Midterm\GameEngMidtermSDLLevels\Level1.cpp(102,38): warning C4244: 'argument': conversion from 'double' to 'unsigned int', possible loss of data
 C:\Sheridan\ThirdYear\Semester6\GameEngineering\Midterm\GameEngMidtermSDLLevels\Level1.cpp(106,30): warning C4018: '>=': signed/unsigned mismatch

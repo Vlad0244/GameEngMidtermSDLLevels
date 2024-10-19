@@ -4,9 +4,9 @@
 #include "SpriteSheet.h"
 #include "ObjectPool.h"
 
-const int MINSPEED = 80;
-const int MAXSPEED = 100;
-const string LEVELFILE = "Level1.bin";
+const int MINSPEED1 = 80;
+const int MAXSPEED1 = 100;
+const string LEVELFILE1 = "Level1.bin";
 class Level1 : public Level
 {
 public:
@@ -20,7 +20,7 @@ public:
 	void AssignNonDefaultValues() override;
 	void Update(TTFont* ttfont) override;
 	boolean isFinished() override;
-	void loadLevel() override;
+	void loadLevel(int currentTime);
 	void startLevel(SpriteSheet* sheetWarrior) override;
 
 private:
