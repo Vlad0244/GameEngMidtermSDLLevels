@@ -48,8 +48,9 @@ void GameController::RunGame()
 
 	level1->startLevel(sheetWarrior, nullptr);
 	level2->startLevel(sheetWarrior, sheetRock);
+	bool run = true;
 
-	while (state != GameState::QUIT)
+	while (run)
 	{
 		t->Tick();
 		SDL_PollEvent(&m_sdlEvent);
@@ -76,6 +77,11 @@ void GameController::RunGame()
 				}
 				break;
 			}
+		case GameState::QUIT:
+		{
+			run = false;
+			break;
+		}
 		}
 
 		SDL_RenderPresent(r->GetRenderer());
