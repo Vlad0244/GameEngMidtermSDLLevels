@@ -150,6 +150,7 @@ copy /Y "$(SolutionDir)External\SDL2_ttf-2.22.0\lib\x64\SDL2_ttf.dll" "$(TargetD
     <ClCompile Include="Level2.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Resource.cpp" />
+    <ClCompile Include="Rock.cpp" />
     <ClCompile Include="SDLLevels.cpp" />
     <ClCompile Include="SoundEffect.cpp" />
     <ClCompile Include="SpriteAnim.cpp" />
@@ -174,6 +175,7 @@ copy /Y "$(SolutionDir)External\SDL2_ttf-2.22.0\lib\x64\SDL2_ttf.dll" "$(TargetD
     <ClInclude Include="ObjectPool.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="Rock.h" />
     <ClInclude Include="Serializable.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="SoundEffect.h" />

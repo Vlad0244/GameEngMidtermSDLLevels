@@ -13,6 +13,7 @@ Level1::Level1()
 	m_units.clear();
 	finished = false;
 	warriorSheet = nullptr;
+	loadStatus = "No";
 }
 
 Level1::~Level1()
@@ -62,7 +63,7 @@ void Level1::AssignNonDefaultValues()
 		Warrior* warrior = Warrior::Pool->GetResource();
 		warrior->AssignNonDefaultValues();
 		Point posPoint = Point(0, 10 + 100 * count);
-		warrior->AssignValues(posPoint, (rand() % (MAXSPEED1 - MINSPEED1 + 1) + MINSPEED1), 1);
+		warrior->AssignValues(posPoint, (rand() % (MAXSPEED - MINSPEED + 1) + MINSPEED), 1);
 		m_units.push_back(warrior);
 	}
 
@@ -78,7 +79,7 @@ void Level1::Update(TTFont* ttfont)
 	r->ClearScreen();
 
 
-	float minDeltaTime = 1.0f / MINSPEED1;
+	float minDeltaTime = 1.0f / MINSPEED;
 	if (t->GetDeltaTime() < minDeltaTime * 1000) // Convert to milliseconds
 	{
 		SDL_Delay((Uint32)((minDeltaTime * 1000) - t->GetDeltaTime())); // Delay to maintain minimum frame time
@@ -92,7 +93,7 @@ void Level1::Update(TTFont* ttfont)
 
 		if (warrior)
 		{
-			unsigned int X1 = static_cast<unsigned int>(warrior->GetPoint().X + (deltaTime * warrior->GetSpeed()));
+			unsigned int X1 = static_cast<unsigned int>(warrior->GetPoint().X + (deltaTime * warrior->GetSpeed() * 3));
 			unsigned int Y1 = warrior->GetPoint().Y;
 
 			cout << "Distance: " << X1 - warrior->GetPoint().X << " Speed: " << warrior->GetSpeed() << endl;
@@ -105,21 +106,33 @@ void Level1::Update(TTFont* ttfont)
 
 			if (warrior->GetPoint().X >= m_mapSizeX)
 			{
-				finished = true;
+				finishLevel();	
 			}
 		}
 	}
 
 	std::string s = "Time: " + to_string(t->GetCurrentTimeT());
-	ttfont->Write(r->GetRenderer(), s.c_str(), SDL_Color{ 0, 255, 0 }, SDL_Point{ 700, 0 });
+	ttfont->Write(r->GetRenderer(), s.c_str(), SDL_Color{ 0, 0, 255 }, SDL_Point{ 300, 0 });
 
 	std::string fps = "Frames Per Second: " + std::to_string(t->GetFPS());
 	ttfont->Write(r->GetRenderer(), fps.c_str(), SDL_Color{ 0, 0, 255 }, SDL_Point{ 0, 0 });
 
+	std::string loaded = "Auto Saved: " + loadStatus;
+	ttfont->Write(r->GetRenderer(), loaded.c_str(), SDL_Color{ 0, 0, 255 }, SDL_Point{ 500, 0 });
 
-	int currentTime = t->GetCurrentTimeT();
-	loadLevel(currentTime);
-	
+	int time = t->GetCurrentTimeT();
+	if (time == 5)
+	{
+		loadLevel();
+		loadStatus = "Yes";
+	}
+}
+
+void Level1::finishLevel()
+{
+	Timing* t = &Timing::Instance();
+	t->Reset();
+	finished = true;
 }
 
 boolean Level1::isFinished()
@@ -127,20 +140,16 @@ boolean Level1::isFinished()
 	return finished;
 }
 
-void Level1::loadLevel(int currentTime)
+void Level1::loadLevel()
 {
-	if (currentTime % 5 == 0)
-	{
-		ofstream writeStream(LEVELFILE1, ios::out | ios::binary);
-		ifstream readStream(LEVELFILE1, ios::in | ios::binary);
+	ofstream writeStream(LEVELFILE, ios::out | ios::binary);
+	ifstream readStream(LEVELFILE, ios::in | ios::binary);
 
-		Serialize(writeStream);
-		Deserialize(readStream);
-	}
-	
+	Serialize(writeStream);
+	Deserialize(readStream);
 }
 
-void Level1::startLevel(SpriteSheet* _sheetWarrior)
+void Level1::startLevel(SpriteSheet* _sheetWarrior, SpriteSheet* emptySheet)
 {
 	warriorSheet = _sheetWarrior;
 }

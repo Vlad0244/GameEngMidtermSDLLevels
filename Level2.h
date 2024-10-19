@@ -20,16 +20,17 @@ public:
 	void AssignNonDefaultValues() override;
 	void Update(TTFont* ttfont) override;
 	boolean isFinished() override;
-	void loadLevel(int currentTime);
-	void startLevel(SpriteSheet* sheetWarrior) override;
+	void loadLevel() override;
+	void startLevel(SpriteSheet* sheetWarrior, SpriteSheet* rockSheet) override;
 
 private:
 	// Members
 	SpriteSheet* warriorSheet;
-	SpriteSheet* roclSheet;
+	SpriteSheet* rockSheet;
 	int m_mapSizeX;
 	int m_mapSizeY;
 	bool finished;
 	vector<Unit*> m_units;
+	string loadStatus;
 };
 

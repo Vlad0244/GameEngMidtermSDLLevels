@@ -21,7 +21,8 @@ public:
 	virtual void AssignNonDefaultValues() override;
 	virtual void Update(TTFont* ttfont);
 	virtual boolean isFinished();
-	virtual void startLevel(SpriteSheet* sheet);
+	virtual void loadLevel();
+	virtual void startLevel(SpriteSheet* sheet, SpriteSheet* sheet2);
 
 private:
 	// Members

@@ -5,6 +5,7 @@
 #include "TTFont.h"
 #include "Timing.h"
 #include "Warrior.h"
+#include "Rock.h"
 
 Level2::Level2()
 {
@@ -13,6 +14,8 @@ Level2::Level2()
 	m_units.clear();
 	finished = false;
 	warriorSheet = nullptr;
+	rockSheet = nullptr;
+	loadStatus = "No";
 }
 
 Level2::~Level2()
@@ -32,6 +35,7 @@ void Level2::Serialize(std::ostream& _stream)
 		SerializePointer(_stream, m_units[count]);
 	}
 	warriorSheet->Serialize(_stream);
+	rockSheet->Serialize(_stream);
 	Resource::Serialize(_stream);
 }
 
@@ -49,6 +53,7 @@ void Level2::Deserialize(std::istream& _stream)
 		m_units.push_back(unit);
 	}
 	warriorSheet->Deserialize(_stream);
+	rockSheet->Deserialize(_stream);
 	Resource::Deserialize(_stream);
 }
 
@@ -66,6 +71,15 @@ void Level2::AssignNonDefaultValues()
 		m_units.push_back(warrior);
 	}
 
+	for (int count = 0; count < 10; count++)
+	{
+		Rock* rock = Rock::Pool->GetResource();
+		rock->AssignNonDefaultValues();
+		Point posPoint2 = Point(50 + 100 * count, 0);
+		rock->AssignValues(posPoint2, (rand() % (MAXSPEED2 - MINSPEED2 + 1) + MINSPEED2), 0);
+		m_units.push_back(rock);
+	}
+
 	Resource::AssignNonDefaultValues();
 }
 
@@ -74,7 +88,7 @@ void Level2::Update(TTFont* ttfont)
 	Renderer* r = &Renderer::Instance();
 	Timing* t = &Timing::Instance();
 
-	r->SetDrawColor(Color(128, 128, 128, 255));
+	r->SetDrawColor(Color(0, 128, 0, 255));
 	r->ClearScreen();
 
 
@@ -92,7 +106,7 @@ void Level2::Update(TTFont* ttfont)
 
 		if (warrior)
 		{
-			unsigned int X1 = static_cast<unsigned int>(warrior->GetPoint().X + (deltaTime * warrior->GetSpeed()));
+			unsigned int X1 = static_cast<unsigned int>(warrior->GetPoint().X + (deltaTime * warrior->GetSpeed() * 3));
 			unsigned int Y1 = warrior->GetPoint().Y;
 
 			cout << "Distance: " << X1 - warrior->GetPoint().X << " Speed: " << warrior->GetSpeed() << endl;
@@ -108,16 +122,44 @@ void Level2::Update(TTFont* ttfont)
 				finished = true;
 			}
 		}
+
+		Rock* rock = dynamic_cast<Rock*>(unit);
+
+		if (rock)
+		{
+			unsigned int X1 = rock->GetPoint().X;
+			unsigned int Y1 = static_cast<unsigned int>(rock->GetPoint().Y + (deltaTime * rock->GetSpeed()));
+
+			cout << "Distance: " << Y1 - rock->GetPoint().Y << " Speed: " << rock->GetSpeed() << endl;
+			rock->SetPoint(Point{ X1, Y1 });
+
+			Rect src = rockSheet->Update(EN_AN_IDLE, deltaTime);
+			Rect dist = Rect(X1, Y1, 20 * 1 + X1, 20 * 1 + Y1);
+
+			r->RenderTexture(rockSheet, src, dist);
+
+			if (rock->GetPoint().Y >= m_mapSizeX)
+			{
+				finished = true;
+			}
+		}
 	}
 
 	std::string s = "Time: " + to_string(t->GetCurrentTimeT());
-	ttfont->Write(r->GetRenderer(), s.c_str(), SDL_Color{ 0, 255, 0 }, SDL_Point{ 700, 0 });
+	ttfont->Write(r->GetRenderer(), s.c_str(), SDL_Color{ 0, 0, 255 }, SDL_Point{ 300, 0 });
 
 	std::string fps = "Frames Per Second: " + std::to_string(t->GetFPS());
 	ttfont->Write(r->GetRenderer(), fps.c_str(), SDL_Color{ 0, 0, 255 }, SDL_Point{ 0, 0 });
 
-	int currentTime = t->GetCurrentTimeT();
-	loadLevel(currentTime);
+	std::string loaded = "Auto Saved: " + loadStatus;
+	ttfont->Write(r->GetRenderer(), loaded.c_str(), SDL_Color{ 0, 0, 255 }, SDL_Point{ 500, 0 });
+
+	int time = t->GetCurrentTimeT();
+	if (time == 5)
+	{
+		loadLevel();
+		loadStatus = "Yes";
+	}
 }
 
 boolean Level2::isFinished()
@@ -125,20 +167,18 @@ boolean Level2::isFinished()
 	return finished;
 }
 
-void Level2::loadLevel(int currentTime)
+void Level2::loadLevel()
 {
-	if (currentTime % 5 == 0)
-	{
-		ofstream writeStream(LEVELFILE2, ios::out | ios::binary);
-		ifstream readStream(LEVELFILE2, ios::in | ios::binary);
+	ofstream writeStream(LEVELFILE2, ios::out | ios::binary);
+	ifstream readStream(LEVELFILE2, ios::in | ios::binary);
 
-		Serialize(writeStream);
-		Deserialize(readStream);
-	}
+	Serialize(writeStream);
+	Deserialize(readStream);
 }
 
-void Level2::startLevel(SpriteSheet* _sheetWarrior)
+void Level2::startLevel(SpriteSheet* _sheetWarrior, SpriteSheet* _sheetRock)
 {
 	warriorSheet = _sheetWarrior;
+	rockSheet = _sheetRock;
 }
 

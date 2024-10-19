@@ -5,12 +5,20 @@
 #include "TTFont.h"
 #include "Timing.h"
 #include "Warrior.h"
+#include "Rock.h"
+static int levelInstances = 0;
 
 Level::Level()
 {
-	Unit::Pool = new ObjectPool<Unit>();
-	Warrior::Pool = new ObjectPool<Warrior>();
-	AssetController::Instance().Initialize(10000000); // Allocate 10MB
+	if (levelInstances == 0)
+	{
+		Unit::Pool = new ObjectPool<Unit>();
+		Warrior::Pool = new ObjectPool<Warrior>();
+		Rock::Pool = new ObjectPool<Rock>();
+		AssetController::Instance().Initialize(10000000); // Allocate 10MB
+	}
+	levelInstances++;
+
 	m_mapSizeX = 0;
 	m_mapSizeY = 0;
 	m_units.clear();
@@ -18,10 +26,14 @@ Level::Level()
 
 Level::~Level()
 {
-	m_units.clear();
-	delete Unit::Pool;
-	delete Warrior::Pool;
-	AssetController::Instance().Clear(); // Free 10MB
+	levelInstances--;
+	if (levelInstances == 0)
+	{
+		delete Unit::Pool;
+		delete Warrior::Pool;
+		delete Rock::Pool;
+		AssetController::Instance().Clear(); // Free 10MB
+	}
 }
 
 void Level::AssignNonDefaultValues()
@@ -47,8 +59,11 @@ boolean Level::isFinished()
 	return boolean();
 }
 
+void Level::loadLevel()
+{
+}
 
-void Level::startLevel(SpriteSheet* sheet)
+void Level::startLevel(SpriteSheet* sheet, SpriteSheet* sheet2)
 {
 }
 
