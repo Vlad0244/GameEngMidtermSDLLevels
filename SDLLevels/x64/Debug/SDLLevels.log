@@ -1,56 +1,7 @@
 ﻿          1 file(s) copied.
           1 file(s) copied.
-  Level.cpp
+  GameController.cpp
 C:\Sheridan\ThirdYear\Semester6\GameEngineering\Midterm\GameEngMidtermSDLLevels\StackAllocator.h(13,46): warning C4244: 'return': conversion from '__int64' to 'int', possible loss of data
-  (compiling source file 'Level.cpp')
+  (compiling source file 'GameController.cpp')
   
-C:\Sheridan\ThirdYear\Semester6\GameEngineering\Midterm\GameEngMidtermSDLLevels\Warrior.h(19,26): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-  (compiling source file 'Level.cpp')
-  
-C:\Sheridan\ThirdYear\Semester6\GameEngineering\Midterm\GameEngMidtermSDLLevels\Rock.h(19,26): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-  (compiling source file 'Level.cpp')
-  
-C:\Sheridan\ThirdYear\Semester6\GameEngineering\Midterm\GameEngMidtermSDLLevels\Level.cpp(75,20): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  Level1.cpp
-C:\Sheridan\ThirdYear\Semester6\GameEngineering\Midterm\GameEngMidtermSDLLevels\StackAllocator.h(13,46): warning C4244: 'return': conversion from '__int64' to 'int', possible loss of data
-  (compiling source file 'Level1.cpp')
-  
-C:\Sheridan\ThirdYear\Semester6\GameEngineering\Midterm\GameEngMidtermSDLLevels\Warrior.h(19,26): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-  (compiling source file 'Level1.cpp')
-  
-C:\Sheridan\ThirdYear\Semester6\GameEngineering\Midterm\GameEngMidtermSDLLevels\Level1.cpp(29,20): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Sheridan\ThirdYear\Semester6\GameEngineering\Midterm\GameEngMidtermSDLLevels\Level1.cpp(66,71): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Sheridan\ThirdYear\Semester6\GameEngineering\Midterm\GameEngMidtermSDLLevels\Level1.cpp(103,53): warning C4244: 'argument': conversion from 'double' to 'unsigned int', possible loss of data
-C:\Sheridan\ThirdYear\Semester6\GameEngineering\Midterm\GameEngMidtermSDLLevels\Level1.cpp(103,38): warning C4244: 'argument': conversion from 'double' to 'unsigned int', possible loss of data
-C:\Sheridan\ThirdYear\Semester6\GameEngineering\Midterm\GameEngMidtermSDLLevels\Level1.cpp(107,30): warning C4018: '>=': signed/unsigned mismatch
-  Level2.cpp
-C:\Sheridan\ThirdYear\Semester6\GameEngineering\Midterm\GameEngMidtermSDLLevels\StackAllocator.h(13,46): warning C4244: 'return': conversion from '__int64' to 'int', possible loss of data
-  (compiling source file 'Level2.cpp')
-  
-C:\Sheridan\ThirdYear\Semester6\GameEngineering\Midterm\GameEngMidtermSDLLevels\Warrior.h(19,26): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-  (compiling source file 'Level2.cpp')
-  
-C:\Sheridan\ThirdYear\Semester6\GameEngineering\Midterm\GameEngMidtermSDLLevels\Rock.h(19,26): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-  (compiling source file 'Level2.cpp')
-  
-C:\Sheridan\ThirdYear\Semester6\GameEngineering\Midterm\GameEngMidtermSDLLevels\Level2.cpp(31,20): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Sheridan\ThirdYear\Semester6\GameEngineering\Midterm\GameEngMidtermSDLLevels\Level2.cpp(70,73): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Sheridan\ThirdYear\Semester6\GameEngineering\Midterm\GameEngMidtermSDLLevels\Level2.cpp(79,71): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Sheridan\ThirdYear\Semester6\GameEngineering\Midterm\GameEngMidtermSDLLevels\Level2.cpp(116,53): warning C4244: 'argument': conversion from 'double' to 'unsigned int', possible loss of data
-C:\Sheridan\ThirdYear\Semester6\GameEngineering\Midterm\GameEngMidtermSDLLevels\Level2.cpp(116,38): warning C4244: 'argument': conversion from 'double' to 'unsigned int', possible loss of data
-C:\Sheridan\ThirdYear\Semester6\GameEngineering\Midterm\GameEngMidtermSDLLevels\Level2.cpp(120,30): warning C4018: '>=': signed/unsigned mismatch
-C:\Sheridan\ThirdYear\Semester6\GameEngineering\Midterm\GameEngMidtermSDLLevels\Level2.cpp(141,27): warning C4018: '>=': signed/unsigned mismatch
-  Rock.cpp
-C:\Sheridan\ThirdYear\Semester6\GameEngineering\Midterm\GameEngMidtermSDLLevels\StackAllocator.h(13,46): warning C4244: 'return': conversion from '__int64' to 'int', possible loss of data
-  (compiling source file 'Rock.cpp')
-  
-C:\Sheridan\ThirdYear\Semester6\GameEngineering\Midterm\GameEngMidtermSDLLevels\Rock.h(19,26): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-  (compiling source file 'Rock.cpp')
-  
-  SDLLevels.cpp
-C:\Sheridan\ThirdYear\Semester6\GameEngineering\Midterm\GameEngMidtermSDLLevels\StackAllocator.h(13,46): warning C4244: 'return': conversion from '__int64' to 'int', possible loss of data
-  (compiling source file 'SDLLevels.cpp')
-  
-  Timing.cpp
-  Generating Code...
   SDLLevels.vcxproj -> C:\Sheridan\ThirdYear\Semester6\GameEngineering\Midterm\GameEngMidtermSDLLevels\x64\Debug\SDLLevels.exe
