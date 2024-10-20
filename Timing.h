@@ -17,10 +17,12 @@ public:
 
 	// Methods
 	void Tick();
+	void Reset();
 
 private:
 	// Members
 	unsigned int m_currentTime;
+	unsigned int m_previousTime;
 	unsigned int m_lastTime;
 	unsigned int m_fpsStart;
 	unsigned int m_fpsCount;

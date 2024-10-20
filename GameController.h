@@ -3,6 +3,8 @@
 
 #include "StandardIncludes.h"
 
+enum GameState { LEVEL1, LEVEL2, QUIT };
+
 class GameController : public Singleton<GameController>
 {
 public:
@@ -15,6 +17,7 @@ public:
 
 private:
 	// Members
+	GameState state;
 	SDL_Event m_sdlEvent;
 };
 

@@ -78,6 +78,9 @@
     <ClCompile Include="Warrior.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Rock.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Asset.h">
@@ -150,6 +153,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Warrior.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Rock.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

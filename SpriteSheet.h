@@ -37,7 +37,7 @@ public:
 
 	void SetSize(byte _rows, byte _columns, byte _clipSizeX, byte _clipSizeY);
 	void AddAnimation(AnimationNames _name, short _clipStart, short _clipCount, float _clipSpeed);
-	Rect Update(AnimationNames _name, float _deltaTime);
+	Rect Update(AnimationNames _name, float _deltaTime, float kof);
 	int GetCurrentClip(AnimationNames _name);
 
 	// Members

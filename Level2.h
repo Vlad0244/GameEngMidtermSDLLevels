@@ -3,6 +3,8 @@
 #include "SpriteAnim.h"
 #include "SpriteSheet.h"
 #include "ObjectPool.h"
+#include "Rock.h"
+#include "Warrior.h"
 
 const int MINSPEED2 = 80;
 const int MAXSPEED2 = 100;
@@ -20,16 +22,19 @@ public:
 	void AssignNonDefaultValues() override;
 	void Update(TTFont* ttfont) override;
 	boolean isFinished() override;
-	void loadLevel(int currentTime);
-	void startLevel(SpriteSheet* sheetWarrior) override;
+	void loadLevel() override;
+	void startLevel(SpriteSheet* sheetWarrior, SpriteSheet* rockSheet) override;
+	boolean checkCollision(Warrior* warr, Rock* rock);
+	void finishLevel();
 
 private:
 	// Members
 	SpriteSheet* warriorSheet;
-	SpriteSheet* roclSheet;
+	SpriteSheet* rockSheet;
 	int m_mapSizeX;
 	int m_mapSizeY;
 	bool finished;
 	vector<Unit*> m_units;
+	string loadStatus;
 };
 
