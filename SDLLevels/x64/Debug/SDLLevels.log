@@ -7,18 +7,17 @@ C:\Users\Vlad\Desktop\SHERIDAN\yr3SEM2\GameEng\Midterm\SDLLevels\SDLLevels\Stack
 C:\Users\Vlad\Desktop\SHERIDAN\yr3SEM2\GameEng\Midterm\SDLLevels\SDLLevels\Rock.h(19,26): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
   (compiling source file 'Level2.cpp')
   
-C:\Users\Vlad\Desktop\SHERIDAN\yr3SEM2\GameEng\Midterm\SDLLevels\SDLLevels\Warrior.h(19,26): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+C:\Users\Vlad\Desktop\SHERIDAN\yr3SEM2\GameEng\Midterm\SDLLevels\SDLLevels\Warrior.h(20,26): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
   (compiling source file 'Level2.cpp')
   
 C:\Users\Vlad\Desktop\SHERIDAN\yr3SEM2\GameEng\Midterm\SDLLevels\SDLLevels\Level2.cpp(31,20): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Vlad\Desktop\SHERIDAN\yr3SEM2\GameEng\Midterm\SDLLevels\SDLLevels\Level2.cpp(70,73): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Vlad\Desktop\SHERIDAN\yr3SEM2\GameEng\Midterm\SDLLevels\SDLLevels\Level2.cpp(79,71): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Vlad\Desktop\SHERIDAN\yr3SEM2\GameEng\Midterm\SDLLevels\SDLLevels\Level2.cpp(123,27): warning C4018: '>=': signed/unsigned mismatch
-C:\Users\Vlad\Desktop\SHERIDAN\yr3SEM2\GameEng\Midterm\SDLLevels\SDLLevels\Level2.cpp(140,30): warning C4018: '>=': signed/unsigned mismatch
-C:\Users\Vlad\Desktop\SHERIDAN\yr3SEM2\GameEng\Midterm\SDLLevels\SDLLevels\Level2.cpp(151,54): warning C4244: 'argument': conversion from 'double' to 'unsigned int', possible loss of data
-C:\Users\Vlad\Desktop\SHERIDAN\yr3SEM2\GameEng\Midterm\SDLLevels\SDLLevels\Level2.cpp(151,39): warning C4244: 'argument': conversion from 'double' to 'unsigned int', possible loss of data
-C:\Users\Vlad\Desktop\SHERIDAN\yr3SEM2\GameEng\Midterm\SDLLevels\SDLLevels\Level2.cpp(189,54): warning C4244: 'argument': conversion from 'double' to 'unsigned int', possible loss of data
-C:\Users\Vlad\Desktop\SHERIDAN\yr3SEM2\GameEng\Midterm\SDLLevels\SDLLevels\Level2.cpp(189,39): warning C4244: 'argument': conversion from 'double' to 'unsigned int', possible loss of data
-C:\Users\Vlad\Desktop\SHERIDAN\yr3SEM2\GameEng\Midterm\SDLLevels\SDLLevels\Level2.cpp(227,82): warning C4244: 'argument': conversion from 'double' to 'unsigned int', possible loss of data
-C:\Users\Vlad\Desktop\SHERIDAN\yr3SEM2\GameEng\Midterm\SDLLevels\SDLLevels\Level2.cpp(227,58): warning C4244: 'argument': conversion from 'double' to 'unsigned int', possible loss of data
+C:\Users\Vlad\Desktop\SHERIDAN\yr3SEM2\GameEng\Midterm\SDLLevels\SDLLevels\Level2.cpp(71,73): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Vlad\Desktop\SHERIDAN\yr3SEM2\GameEng\Midterm\SDLLevels\SDLLevels\Level2.cpp(80,71): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Vlad\Desktop\SHERIDAN\yr3SEM2\GameEng\Midterm\SDLLevels\SDLLevels\Level2.cpp(136,30): warning C4018: '>=': signed/unsigned mismatch
+C:\Users\Vlad\Desktop\SHERIDAN\yr3SEM2\GameEng\Midterm\SDLLevels\SDLLevels\Level2.cpp(144,54): warning C4244: 'argument': conversion from 'double' to 'unsigned int', possible loss of data
+C:\Users\Vlad\Desktop\SHERIDAN\yr3SEM2\GameEng\Midterm\SDLLevels\SDLLevels\Level2.cpp(144,39): warning C4244: 'argument': conversion from 'double' to 'unsigned int', possible loss of data
+C:\Users\Vlad\Desktop\SHERIDAN\yr3SEM2\GameEng\Midterm\SDLLevels\SDLLevels\Level2.cpp(182,54): warning C4244: 'argument': conversion from 'double' to 'unsigned int', possible loss of data
+C:\Users\Vlad\Desktop\SHERIDAN\yr3SEM2\GameEng\Midterm\SDLLevels\SDLLevels\Level2.cpp(182,39): warning C4244: 'argument': conversion from 'double' to 'unsigned int', possible loss of data
+C:\Users\Vlad\Desktop\SHERIDAN\yr3SEM2\GameEng\Midterm\SDLLevels\SDLLevels\Level2.cpp(224,82): warning C4244: 'argument': conversion from 'double' to 'unsigned int', possible loss of data
+C:\Users\Vlad\Desktop\SHERIDAN\yr3SEM2\GameEng\Midterm\SDLLevels\SDLLevels\Level2.cpp(224,58): warning C4244: 'argument': conversion from 'double' to 'unsigned int', possible loss of data
   SDLLevels.vcxproj -> C:\Users\Vlad\Desktop\SHERIDAN\yr3SEM2\GameEng\Midterm\SDLLevels\SDLLevels\x64\Debug\SDLLevels.exe

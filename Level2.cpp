@@ -34,8 +34,8 @@ void Level2::Serialize(std::ostream& _stream)
 	{
 		SerializePointer(_stream, m_units[count]);
 	}
-	warriorSheet->Serialize(_stream);
-	rockSheet->Serialize(_stream);
+	//warriorSheet->Serialize(_stream);
+	//rockSheet->Serialize(_stream);
 	Resource::Serialize(_stream);
 }
 
@@ -52,8 +52,8 @@ void Level2::Deserialize(std::istream& _stream)
 		DeserializePointer(_stream, unit);
 		m_units.push_back(unit);
 	}
-	warriorSheet->Deserialize(_stream);
-	rockSheet->Deserialize(_stream);
+	//warriorSheet->Deserialize(_stream);
+	//rockSheet->Deserialize(_stream);
 	Resource::Deserialize(_stream);
 }
 
@@ -64,6 +64,7 @@ void Level2::AssignNonDefaultValues()
 	finished = false;
 	for (int count = 0; count < 10; count++)
 	{
+
 		Warrior* warrior = Warrior::Pool->GetResource();
 		warrior->AssignNonDefaultValues();
 		Point posPoint = Point(0, 10 + 100 * count);
@@ -103,7 +104,6 @@ void Level2::Update(TTFont* ttfont)
 	for (Unit* unit : m_units)
 	//for (int i = 0; i < m_units.size(); i ++)
 	{
-
 		Rock* rock = dynamic_cast<Rock*>(unit);
 
 		if (rock)
@@ -112,29 +112,25 @@ void Level2::Update(TTFont* ttfont)
 			unsigned int X1 = rock->GetPoint().X;
 			unsigned int Y1 = static_cast<unsigned int>(rock->GetPoint().Y + (deltaTime * rock->GetSpeed()));
 
-			//cout << "Distance: " << Y1 - rock->GetPoint().Y << " Speed: " << rock->GetSpeed() << endl;
 			rock->SetPoint(Point{ X1, Y1 });
 
-			Rect src = rockSheet->Update(EN_AN_IDLE, deltaTime, kof);
+			Rect src = rock->GetSpriteSheet()->Update(EN_AN_IDLE, deltaTime, kof);
 			Rect dist = Rect(X1, Y1, 20 * 1 + X1, 20 * 1 + Y1);
 
-			r->RenderTexture(rockSheet, src, dist);
+			r->RenderTexture(rock->GetSpriteSheet(), src, dist);
 
-			if (rock->GetPoint().Y >= m_mapSizeX)
-			{
-				finished = true;
-			}
 		}
 
 		Warrior* warrior = dynamic_cast<Warrior*>(unit);
 
 		if (warrior)
 		{
-			unsigned int X1 = static_cast<unsigned int>(warrior->GetPoint().X + (deltaTime * warrior->GetSpeed() * 3));
+			unsigned int X1 = static_cast<unsigned int>(warrior->GetPoint().X + (deltaTime * warrior->GetSpeed()));
 			unsigned int Y1 = warrior->GetPoint().Y;
-			//cout << "Speed: " << warrior->GetSpeed() << " Max Speed: " << MAXSPEED2 << " " << (warrior->GetSpeed() / MAXSPEED2) * 6.0f;
+			cout << "Speed: " << warrior->GetSpeed() << " Max Speed: " << MAXSPEED2 << " " << (warrior->GetSpeed() / MAXSPEED2) * 6.0f;
 			float kof = ((float)warrior->GetSpeed() / (float)MAXSPEED2) * 6.0f;
-			//cout << "Distance: " << X1 - warrior->GetPoint().X << " Speed: " << warrior->GetSpeed() << endl;
+
+			cout << "Distance: " << X1 - warrior->GetPoint().X << " Speed: " << warrior->GetSpeed() << endl;
 			warrior->SetPoint(Point{ X1, Y1 });
 
 			if (warrior->GetPoint().X >= m_mapSizeX)
@@ -144,13 +140,10 @@ void Level2::Update(TTFont* ttfont)
 
 			if (!warrior->GetIsHit()) 
 			{
-				//cout << "Distance: " << X1 - warrior->GetPoint().X << " Speed: " << warrior->GetSpeed() << endl;
-				warrior->SetPoint(Point{ X1, Y1 });
-
-				Rect src = warriorSheet->Update(EN_AN_RUN, deltaTime, kof);
+				Rect src = warrior->GetSpriteSheet()->Update(EN_AN_RUN, deltaTime, kof);
 				Rect dist = Rect(X1, Y1, 69 * 1.8 + X1, 44 * 1.8 + Y1);
 
-				r->RenderTexture(warriorSheet, src, dist);
+				r->RenderTexture(warrior->GetSpriteSheet(), src, dist);
 
 
 				for (auto it = m_units.begin(); it != m_units.end();)
@@ -184,12 +177,12 @@ void Level2::Update(TTFont* ttfont)
 			
 			else 
 			{
-				Rect src = warriorSheet->Update(EN_AN_DEATH, deltaTime, kof);
+				Rect src = warrior->GetSpriteSheet()->Update(EN_AN_DEATH, deltaTime, kof);
 
 				Rect dist = Rect(X1, Y1, 69 * 1.8 + X1, 44 * 1.8 + Y1);
-				r->RenderTexture(warriorSheet, src, dist);
-				cout << "Current Clip Frame: " << warriorSheet->GetCurrentClip(EN_AN_DEATH) << endl;
-				if (warriorSheet->GetCurrentClip(EN_AN_DEATH) >= 36)
+				r->RenderTexture(warrior->GetSpriteSheet(), src, dist);
+				cout << "Current Clip Frame: " << warrior->GetSpriteSheet()->GetCurrentClip(EN_AN_DEATH) << endl;
+				if (warrior->GetSpriteSheet()->GetCurrentClip(EN_AN_DEATH) >= 36)
 				{
 					cout << " We are deleting warrior" << endl;
 					m_units.erase(find(m_units.begin(), m_units.end(), warrior));
@@ -218,6 +211,10 @@ void Level2::Update(TTFont* ttfont)
 		loadLevel();
 		loadStatus = "Yes";
 	}
+	if (m_units.empty())
+	{
+		finishLevel();
+	}
 }
 
 boolean Level2::checkCollision(Warrior* warr, Rock* rock) {
@@ -227,16 +224,15 @@ boolean Level2::checkCollision(Warrior* warr, Rock* rock) {
 	Rect warrDist = Rect(warrPoint.X, warrPoint.Y, 69 * 1.8 + warrPoint.X, 44 * 1.8 + warrPoint.Y);
 	Rect rockDist = Rect(rockPoint.X, rockPoint.Y, 20 * 1 + rockPoint.X, 20 * 1 + rockPoint.Y);
 
-	int warrX1 = warrDist.X1;              // Left
-	int warrY1 = warrDist.Y1;              // Top
-	int warrX2 = warrDist.X2;          // Right (bottom-right corner x)
-	int warrY2 = warrDist.Y2;         // Bottom (bottom-right corner y)
+	int warrX1 = warrDist.X1;         
+	int warrY1 = warrDist.Y1;         
+	int warrX2 = warrDist.X2;         
+	int warrY2 = warrDist.Y2;         
 
-	// Extract coordinates from rect2
-	int rockX1 = rockDist.X1;              // Left
-	int rockY1 = rockDist.Y1;              // Top
-	int rockX2 = rockDist.X2;          // Right (bottom-right corner x)
-	int rockY2 = rockDist.Y2;         // Bottom (bottom-right corner y)
+	int rockX1 = rockDist.X1;        
+	int rockY1 = rockDist.Y1;        
+	int rockX2 = rockDist.X2;        
+	int rockY2 = rockDist.Y2;        
 
 	return (warrX1 < rockX2 && warrX2 > rockX1 && warrY1 < rockY2 && warrY2 > rockY1);
 }

@@ -32,7 +32,7 @@ void Level1::Serialize(std::ostream& _stream)
 	{
 		SerializePointer(_stream, m_units[count]);
 	}
-	warriorSheet->Serialize(_stream);
+	//warriorSheet->Serialize(_stream);
 	Resource::Serialize(_stream);
 }
 
@@ -49,7 +49,7 @@ void Level1::Deserialize(std::istream& _stream)
 		DeserializePointer(_stream, unit);
 		m_units.push_back(unit);
 	}
-	warriorSheet->Deserialize(_stream);
+	//warriorSheet->Deserialize(_stream);
 	Resource::Deserialize(_stream);
 }
 
@@ -93,7 +93,7 @@ void Level1::Update(TTFont* ttfont)
 
 		if (warrior)
 		{
-			unsigned int X1 = static_cast<unsigned int>(warrior->GetPoint().X + (deltaTime * warrior->GetSpeed() * 3));
+			unsigned int X1 = static_cast<unsigned int>(warrior->GetPoint().X + (deltaTime * warrior->GetSpeed()));
 			unsigned int Y1 = warrior->GetPoint().Y;
 			cout << "Speed: " << warrior->GetSpeed() << " Max Speed: " << MAXSPEED << " " << (warrior->GetSpeed() / MAXSPEED) * 6.0f;
 			float kof = ((float)warrior->GetSpeed() / (float)MAXSPEED) * 6.0f;
@@ -101,10 +101,10 @@ void Level1::Update(TTFont* ttfont)
 			cout << "Distance: " << X1 - warrior->GetPoint().X << " Speed: " << warrior->GetSpeed() << endl;
 			warrior->SetPoint(Point{ X1, Y1 });
 
-			Rect src = warriorSheet->Update(EN_AN_RUN, deltaTime, kof);
+			Rect src = warrior->GetSpriteSheet()->Update(EN_AN_RUN, deltaTime, kof);
 			Rect dist = Rect(X1, Y1, 69 * 1.8 + X1, 44 * 1.8 + Y1);
 
-			r->RenderTexture(warriorSheet, src, dist);
+			r->RenderTexture(warrior->GetSpriteSheet(), src, dist);
 
 			if (warrior->GetPoint().X >= m_mapSizeX)
 			{

@@ -1,7 +1,7 @@
 #pragma once
 #include "Unit.h"
 #include "BasicStructs.h"
-
+#include "SpriteSheet.h"
 class Rock : public Unit
 {
 public:
@@ -18,12 +18,14 @@ public:
 	void SetPoint(Point _posPoint) { posPoint = _posPoint; }
 	int GetSpeed() { return speed; }
 	Point GetPoint() { return posPoint; }
+	SpriteSheet* GetSpriteSheet() { return rockSheet; }
 	
 	// Members 
 	static ObjectPool<Rock>* Pool;
 
 private:
 	// Members
+	SpriteSheet* rockSheet;
 	boolean direction;
 	float speed;
 	Point posPoint;

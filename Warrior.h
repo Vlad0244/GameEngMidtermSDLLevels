@@ -1,6 +1,7 @@
 #pragma once
 #include "Unit.h"
 #include "BasicStructs.h"
+#include "SpriteSheet.h"
 
 class Warrior : public Unit
 {
@@ -20,11 +21,13 @@ public:
 	Point GetPoint() { return posPoint; }
 	boolean GetIsHit() { return isHit; }
 	void SetIsHit(boolean _hit) { isHit = _hit; }
+	SpriteSheet* GetSpriteSheet() { return warriorSheet; }
 	// Members 
 	static ObjectPool<Warrior>* Pool;
 
 private:
 	// Members
+	SpriteSheet* warriorSheet;
 	boolean direction;
 	float speed;
 	Point posPoint;
